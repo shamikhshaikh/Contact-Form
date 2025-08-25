@@ -21,7 +21,7 @@ contact_form/
 ## 🚀 Getting Started 
    ```bash
 1. *Clone the repository*  
-git clone https://github.com/your-username/contact_form.git
+git clone https://github.com/shamikhshaikh/contact_form.git
 cd contact_form
 2. *Open the project*
 Just open index.html in your browser.
