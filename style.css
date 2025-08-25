@@ -1,0 +1,294 @@
+:root {
+    --primary-color: #0d0c1d;
+    --accent-color-1: #3a1c71;
+    --accent-color-2: #d76d77;
+    --accent-color-3: #ffaf7b;
+    --card-bg: rgba(26, 10, 46, 0.6);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-color: #f778ba; /* A cooler pink */
+    --hover-end-color: #e35183; /* A deeper pink */
+    --error-color: #ff4d4f;
+    --success-color: #52c41a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    font-family: 'Sora', sans-serif;
+    background: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+.background-liquid {
+    position: fixed;
+    top: -50vh;
+    left: -50vw;
+    width: 200vw;
+    height: 200vh;
+    background: radial-gradient(circle at 10% 20%, var(--accent-color-1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 90%, var(--accent-color-2) 0%, transparent 40%),
+                radial-gradient(circle at 40% 60%, var(--accent-color-3) 0%, transparent 40%);
+    background-blend-mode: screen;
+    opacity: 0.4;
+    filter: blur(80px);
+    z-index: -2;
+    animation: liquidMove 20s infinite alternate ease-in-out;
+}
+
+@keyframes liquidMove {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(10vw, 5vh) rotate(5deg); }
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    z-index: 1;
+}
+
+.contact-form-container {
+    backdrop-filter: blur(30px) brightness(1.1);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.05);
+    animation: fadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: perspective(1000px) rotateX(0deg);
+}
+
+.contact-form-container:hover {
+    transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-text h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-color-3);
+}
+
+.header-text p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    resize: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--hover-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px var(--hover-color);
+}
+
+.form-group.invalid input, .form-group.invalid textarea {
+    border-color: var(--error-color);
+    box-shadow: 0 0 10px rgba(255, 77, 79, 0.3);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 5px;
+    height: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+}
+
+.error-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.liquid-button {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.liquid-button .button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.liquid-button .button-liquid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: linear-gradient(90deg, var(--hover-color), var(--hover-end-color));
+    border-radius: 50%;
+    transition: all 0.5s ease-out;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+}
+
+.liquid-button:hover .button-liquid {
+    width: 500px; 
+    height: 500px;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: rgba(26, 10, 46, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--success-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+    z-index: 100;
+}
+
+.success-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.success-message p {
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 15px;
+    font-size: 20px;
+    color: var(--success-color);
+}
+
+.checkmark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: var(--success-color);
+    stroke-miterlimit: 10;
+    margin: 0 auto;
+    box-shadow: inset 0px 0px 0px var(--success-color);
+    animation: fill 0.4s ease-in-out 0.4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: var(--success-color);
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% { stroke-dashoffset: 0; }
+}
+@keyframes fill {
+    100% { box-shadow: inset 0px 0px 0px 30px var(--success-color); }
+}
+@keyframes scale {
+    0%, 100% { transform: none; }
+    50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+@media (max-width: 600px) {
+    body {
+        justify-content: flex-start;
+        padding-top: 40px;
+        align-items: flex-start;
+    }
+    .contact-form-container {
+        padding: 30px 20px;
+        margin-top: 0;
+    }
+    .header-text h2 {
+        font-size: 30px;
+    }
+    .header-text p {
+        font-size: 14px;
+    }
+}
